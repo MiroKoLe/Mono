@@ -1,0 +1,14 @@
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\obj\Debug\Product.Model.csprojAssemblyReference.cache
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\obj\Debug\Product.Model.csproj.CoreCompileInputs.cache
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\Product.Model.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\Product.Model.pdb
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\Product.Model.Common.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\Project.DAL.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\EntityFramework.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\Product.Model.Common.pdb
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\Project.DAL.pdb
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\Project.DAL.dll.config
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\EntityFramework.xml
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\obj\Debug\Product.Model.csproj.CopyComplete
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\obj\Debug\Product.Model.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\obj\Debug\Product.Model.pdb
