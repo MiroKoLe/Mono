@@ -1,4 +1,4 @@
-﻿using Product.Model.Common;
+﻿using Project.Model.Common;
 using Project.DAL;
 using System;
 using System.Collections.Generic;
@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Product.Model
+namespace Project.Model
 {
-    class ProductCategory : IProductCategory //problem sa reference
+   public class ProductCategory : IProductCategory 
     {
 
         public int ProductId { get; set; }

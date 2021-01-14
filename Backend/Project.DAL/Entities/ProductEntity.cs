@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Project.DAL.Entities
 {
-    class ProductEntity
+    public class ProductEntity
     {
-        public partial class ProductTable
-        {
+       
             public int ID { get; set; }
 
             [StringLength(50)]
@@ -24,6 +23,7 @@ namespace Project.DAL.Entities
             public int ProductCategoryId { get; set; }
 
             public virtual ProductCategory ProductCategory { get; set; }
-        }
+        
     }
 }
+

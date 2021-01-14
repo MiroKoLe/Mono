@@ -12,3 +12,10 @@ C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\Entity
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\obj\Debug\Product.Model.csproj.CopyComplete
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\obj\Debug\Product.Model.dll
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\obj\Debug\Product.Model.pdb
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\AutoMapper.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\System.ValueTuple.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\AutoMapper.pdb
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\AutoMapper.xml
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\System.ValueTuple.xml
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\PagedList.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Model\bin\Debug\PagedList.xml

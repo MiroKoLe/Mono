@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project.DAL.Entities
 {
-    class ProductCategoryEntity
+    public class ProductCategoryEntity
     {
         [Key]
         public int ProductId { get; set; }

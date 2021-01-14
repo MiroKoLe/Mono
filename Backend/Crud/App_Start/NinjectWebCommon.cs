@@ -68,7 +68,6 @@ namespace Crud.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IProductRepository>().To<ProductRepository>(); 
             kernel.Bind<IProductService>().To<ProductService>(); 
             kernel.Bind<IProductDomain>().To<ProductDomain>(); 
             kernel.Bind<IProduct>().To<Product>();

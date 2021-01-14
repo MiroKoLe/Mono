@@ -1,4 +1,4 @@
-﻿using Product.Model.Common;
+﻿using Project.Model.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Product.Model
+namespace Project.Model
 {
     
-    class Product : IProduct
+   public class Product : IProduct
     {
         public int ID { get; set; }
 
