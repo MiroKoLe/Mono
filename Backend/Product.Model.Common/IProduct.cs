@@ -10,7 +10,7 @@ namespace Project.Model.Common
     public interface IProduct
     {
 
-        int ID { get; set; }
+        int Id { get; set; }
 
         [StringLength(50)]
         string Name { get; set; }
@@ -20,8 +20,8 @@ namespace Project.Model.Common
 
         int? Quantity { get; set; }
 
-        int ProductCategoryId { get; set; }
+        int? ProductCategoryId { get; set; }
 
-        IProductCategory ProductCategory { get; set; }
+        ICategories ProductCategory { get; set; }
     }
 }

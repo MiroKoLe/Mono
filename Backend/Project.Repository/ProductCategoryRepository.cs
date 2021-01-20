@@ -3,13 +3,12 @@ using PagedList;
 using Project.Model.Common;
 using Project.Repository.Common;
 using Project.DAL;
-using Project.DAL.Entities;
-using Project.Repository.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Project.Model;
 
 namespace Project.Repository
 {
@@ -23,40 +22,39 @@ namespace Project.Repository
             this.Repository = repository;
         }
 
-        public async Task<IList<IProductCategory>> GetProductsAsync()
+        public async Task<IList<ICategories>> GetProductsAsync()
         {
 
-            var productCategory = Repository.GetProducts();
+            var product = await Task.Run(() => Repository.GetProducts());
 
-            var categoryEntity = productCategory.ToList(); 
+            List<ICategories> productCategories = new List<ICategories>();
 
+            productCategories = Mapper.Map<List<ProductCategoryEntity>, List<ICategories>>(product.ToList()); 
 
-            var products = Mapper.Map<List<ProductCategoryEntity>, List<IProductCategory>>(categoryEntity); 
-
-            return products.ToList(); 
+            return productCategories.ToList(); 
         }
-        public async Task<IProductCategory> GetDetailsAsync(int id)
+        public async Task<ICategories> GetDetailsAsync(int id)
         {
             var product = await Repository.GetDetailsAsync(id);
-            return Mapper.Map<ProductCategoryEntity, IProductCategory>(product);
+            return Mapper.Map<ProductCategoryEntity, ICategories>(product);
         }
 
-        public async Task<IProductCategory> GetProductAsync(int id)
+        public async Task<ICategories> GetProductAsync(int id)
         {
             var product = await Repository.GetDetailsAsync(id);
-            return Mapper.Map<ProductCategoryEntity, IProductCategory>(product);
+            return Mapper.Map<ProductCategoryEntity, ICategories>(product);
         }
 
-        public async Task<int> CreateProductAsync(IProductCategory product)
+        public async Task<int> CreateProductAsync(ICategories product)
         {
-            var entity = Mapper.Map<IProductCategory, ProductCategoryEntity>(product);
+            var entity = Mapper.Map<ICategories, ProductCategoryEntity>(product);
             return await Repository.CreateProductAsync(entity);
 
         }
-        public async Task<int> EditAsync(IProductCategory product)
+        public async Task<int> EditAsync(ICategories product)
         {
 
-            var entity = Mapper.Map<IProductCategory, ProductCategoryEntity>(product);
+            var entity = Mapper.Map<ICategories, ProductCategoryEntity>(product);
             return await Repository.EditAsync(entity);
 
         }

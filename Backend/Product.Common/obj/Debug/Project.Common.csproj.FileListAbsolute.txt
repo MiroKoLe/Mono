@@ -1,0 +1,15 @@
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Common\bin\Debug\Product.Common.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Common\bin\Debug\Product.Common.pdb
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Common\bin\Debug\AutoMapper.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Common\bin\Debug\EntityFrameworkPaginate.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Common\bin\Debug\PagedList.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Common\bin\Debug\System.ValueTuple.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Common\bin\Debug\AutoMapper.pdb
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Common\bin\Debug\AutoMapper.xml
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Common\bin\Debug\PagedList.xml
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Common\bin\Debug\System.ValueTuple.xml
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Common\obj\Debug\Project.Common.csprojAssemblyReference.cache
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Common\obj\Debug\Project.Common.csproj.CoreCompileInputs.cache
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Common\obj\Debug\Project.Common.csproj.CopyComplete
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Common\obj\Debug\Product.Common.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Product.Common\obj\Debug\Product.Common.pdb

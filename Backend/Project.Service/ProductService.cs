@@ -22,13 +22,10 @@ namespace Project.Service
 
 
 
-        public async Task<List<IProduct>> GetProductsAsync(string searchBy, string search, string sortBy, int? PageSize, int? page, int? PageNumber)
+        public async Task<IList<IProduct>> GetProductsAsync()
         {
 
-
-           var productList = await Repository.GetProducts( searchBy,  search,  sortBy, PageSize,  page, PageNumber);
-
-            return productList.ToList(); 
+            return await Repository.GetProducts(); 
 
 
         }

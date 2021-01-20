@@ -12,40 +12,40 @@ namespace Project.Service
     public class ProductCategoryService : IProductCategoryService
     {
 
-        readonly private IProductCategoryRepository CategoryRepository; 
+        readonly private IProductCategoryRepository categoryRepository; 
 
-        public ProductCategoryService(IProductCategoryRepository categoryRepository)
+        public ProductCategoryService(IProductCategoryRepository _categoryRepository)
         {
-            this.CategoryRepository = categoryRepository; 
+            this.categoryRepository = _categoryRepository; 
         }
 
-        public async Task<IList<IProductCategory>> GetProductCategoriesAsync()
+        public async Task<IList<ICategories>> GetProductCategoriesAsync()
         {
 
-            return await CategoryRepository.GetProductsAsync();
+            return await categoryRepository.GetProductsAsync();
 
          
         }
 
-        public async Task<int> CategoryUpdateAsync(IProductCategory category)
+        public async Task<int> CategoryUpdateAsync(ICategories category)
         {
-            return await CategoryRepository.CreateProductAsync(category);
+            return await categoryRepository.CreateProductAsync(category);
 
         }
 
         public async Task<int> DeleteCategoryAsync(int id)
         {
-            return await CategoryRepository.DeleteItemAsync(id); 
+            return await categoryRepository.DeleteItemAsync(id); 
         }
 
-        public async Task<int> CategoryEdit(IProductCategory category)
+        public async Task<int> CategoryEdit(ICategories category)
         {
-            return await CategoryRepository.EditAsync(category); 
+            return await categoryRepository.EditAsync(category); 
         }
 
-        public async Task<IProductCategory> GetDetailForCategory(int id)
+        public async Task<ICategories> GetDetailForCategory(int id)
         {
-            return await CategoryRepository.GetDetailsAsync(id); 
+            return await categoryRepository.GetDetailsAsync(id); 
         }
 
 

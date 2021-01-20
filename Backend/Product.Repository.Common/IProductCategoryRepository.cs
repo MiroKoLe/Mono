@@ -10,10 +10,10 @@ namespace Project.Repository.Common
 {
     public interface IProductCategoryRepository
     {
-        Task<IList<IProductCategory>> GetProductsAsync();
-        Task <IProductCategory> GetDetailsAsync(int id);
-        Task<int> CreateProductAsync(IProductCategory entity);
-        Task<int> EditAsync(IProductCategory entity);
+        Task<IList<ICategories>> GetProductsAsync();
+        Task <ICategories> GetDetailsAsync(int id);
+        Task<int> CreateProductAsync(ICategories entity);
+        Task<int> EditAsync(ICategories entity);
         Task<int> DeleteItemAsync(int id);
     }
 }

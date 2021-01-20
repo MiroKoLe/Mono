@@ -6,16 +6,20 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using AutoMapper;
 using MVC;
+using Project.Repository.Common;
+using Project.Model;
+using Project.Model.Common;
 using Project.Service.Common;
 
 namespace MVC.Controllers
 {
     public class ProductAPIController : ApiController
     {
-        private Products db = new Products();
 
         private readonly IProductService productService;
 
@@ -25,102 +29,79 @@ namespace MVC.Controllers
         }
 
         // GET: api/ProductAPI
-        public IQueryable<ProductModel> GetProductTable()
+        [HttpGet]
+        [Route("api/ProductAPI/")]
+        public async Task<IHttpActionResult> GetAllProducts()
         {
-            return db.ProductTable;
+            var models = await productService.GetProductsAsync();
+
+            return Ok(models); 
+
         }
+        
+            
+        
 
         // GET: api/ProductAPI/5
         [ResponseType(typeof(ProductModel))]
-        public IHttpActionResult GetProductModel(int id)
+        public async Task<IHttpActionResult> GetProductById(int id)
         {
-            ProductModel productModel = db.ProductTable.Find(id);
-            if (productModel == null)
+
+            var product = await productService.GetDetailsAsync(id); 
+    
+            if (product == null)
             {
                 return NotFound();
             }
 
-            return Ok(productModel);
+            return Ok(product);
         }
 
         // PUT: api/ProductAPI/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutProductModel(int id, ProductModel productModel)
+        public async Task<IHttpActionResult> PutProductModelAsync(int id, ProductModel productModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            var model = Mapper.Map<ProductModel, IProduct>(productModel);
+            var product = await productService.CreateProductAsync(model);
 
-            if (id != productModel.ID)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(productModel).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductModelExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(); 
         }
 
         // POST: api/ProductAPI
         [ResponseType(typeof(ProductModel))]
-        public IHttpActionResult PostProductModel(ProductModel productModel)
+        [ResponseType(typeof(void))]
+        public async Task<IHttpActionResult> PostNewProductAsync(ProductModel productModel)
         {
+
+
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest("Invalid Data!");
             }
 
-            db.ProductTable.Add(productModel);
-            db.SaveChanges();
+            Product productDomain = new Product();
 
-            return CreatedAtRoute("DefaultApi", new { id = productModel.ID }, productModel);
+            productDomain = Mapper.Map<ProductModel, Product>(productModel);
+
+            await productService.CreateProductAsync(productDomain);
+
+
+            return Ok();
         }
 
         // DELETE: api/ProductAPI/5
         [ResponseType(typeof(ProductModel))]
-        public IHttpActionResult DeleteProductModel(int id)
+        public async Task<IHttpActionResult> DeleteAsync(int id)
         {
-            ProductModel productModel = db.ProductTable.Find(id);
-            if (productModel == null)
-            {
-                return NotFound();
-            }
+            var productDomain = await productService.DeleteItemAsync(id);
+          
 
-            db.ProductTable.Remove(productModel);
-            db.SaveChanges();
 
-            return Ok(productModel);
+            return Ok();
+
+
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool ProductModelExists(int id)
-        {
-            return db.ProductTable.Count(e => e.ID == id) > 0;
-        }
+       
     }
 }

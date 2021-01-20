@@ -1,3 +1,5 @@
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\obj\Debug\Project.DAL.csprojAssemblyReference.cache
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\obj\Debug\Project.DAL.csproj.CoreCompileInputs.cache
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\bin\Debug\Project.DAL.dll.config
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\bin\Debug\Project.DAL.dll
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\bin\Debug\Project.DAL.pdb
@@ -5,15 +7,7 @@ C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\bin\Debug\EntityFr
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\bin\Debug\EntityFramework.xml
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\obj\Debug\Project.DAL.csprojAssemblyReference.cache
-C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\obj\Debug\Project.DAL.csproj.CoreCompileInputs.cache
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\obj\Debug\Project.DAL.csproj.CopyComplete
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\obj\Debug\Project.DAL.dll
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\obj\Debug\Project.DAL.pdb
-C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\bin\Debug\AutoMapper.dll
-C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\bin\Debug\System.ValueTuple.dll
-C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\bin\Debug\AutoMapper.pdb
-C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\bin\Debug\AutoMapper.xml
-C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\bin\Debug\System.ValueTuple.xml
-C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\bin\Debug\PagedList.dll
-C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\bin\Debug\PagedList.xml
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.DAL\bin\Debug\EntityFrameworkPaginate.dll

@@ -1,6 +1,5 @@
 ﻿using Project.Repository.Common;
 using Project.DAL;
-using Project.Repository.Common;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,12 +14,12 @@ namespace Project.Repository
      where TEntity : class
     {
 
-        private readonly ProductContext Context;
+        private readonly ProductContext context;
         private DbSet<TEntity> Entities;
-        public GenericRepository(ProductContext context)
+        public GenericRepository(ProductContext _context)
         {
-            this.Context = context;
-            Entities = Context.Set<TEntity>();
+            this.context = _context;
+            Entities = context.Set<TEntity>();
 
         }
 
@@ -46,7 +45,7 @@ namespace Project.Repository
                     throw new ArgumentException("entity");
                 }
                 Entities.Add(entity);
-                return await Context.SaveChangesAsync();
+                return await context.SaveChangesAsync();
 
             }
             catch (DbEntityValidationException dbEx)
@@ -76,8 +75,8 @@ namespace Project.Repository
                 {
                     throw new ArgumentException("entity");
                 }
-                Context.Entry(entity).State = EntityState.Modified;
-                return await Context.SaveChangesAsync();
+                context.Entry(entity).State = EntityState.Modified;
+                return await context.SaveChangesAsync();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -105,8 +104,8 @@ namespace Project.Repository
                 {
                     throw new ArgumentNullException("entity");
                 }
-                Context.Entry(entity).State = EntityState.Deleted;
-                return await Context.SaveChangesAsync();
+                context.Entry(entity).State = EntityState.Deleted;
+                return await context.SaveChangesAsync();
             }
             catch (DbEntityValidationException dbEx)
             {

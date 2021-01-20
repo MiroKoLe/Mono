@@ -8,15 +8,14 @@ using System.Threading.Tasks;
 
 namespace Project.Model
 {
-   public class ProductCategory : IProductCategory 
+   public class ProductCategory : ICategories
     {
 
         public int ProductId { get; set; }
 
         public string Name { get; set; }
 
-        public bool? IsActive { get; set; }
 
-        public virtual ICollection<ProductTable> ProductTable { get; set; }
+        public virtual ICollection<IProduct> ProductTable { get; set; }
     }
 }

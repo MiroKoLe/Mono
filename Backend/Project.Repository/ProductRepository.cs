@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Project.Model.Common;
 using Project.Repository.Common;
-using Project.DAL.Entities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PagedList;
+using Project.DAL;
 
 namespace Project.Repository
 {
@@ -22,17 +22,30 @@ namespace Project.Repository
             this.repository = _repository;
         }
 
+
+         public async Task<IList<IProduct>> GetProducts()
+       {
+
+            var productTable = await Task.Run(() => repository.GetProducts()); 
+
+
+            List<IProduct> products = new List<IProduct>();
+
+            var productList = productTable.ToList();
+
+            products = Mapper.Map<List<ProductEntity>, List<IProduct>>(productList); 
+
+
+
+            return products.ToList(); 
+        }
+
         public async Task<IProduct> GetDetailsAsync(int id)
         {
             var product = await repository.GetDetailsAsync(id);
             return Mapper.Map<ProductEntity, IProduct>(product); 
         }
 
-        public async Task<IProduct> GetProductAsync(int id)
-        {
-            var product = await repository.GetDetailsAsync(id); 
-            return Mapper.Map<ProductEntity, IProduct>(product); 
-        }
 
         public async Task<int> CreateProductAsync(IProduct product)
         {
@@ -52,50 +65,7 @@ namespace Project.Repository
          return await repository.DeleteItemAsync(id); 
 
         }
-        public async Task<List<IProduct>> GetProducts(string searchBy, string search, string sortBy, int? PageSize, int? page, int? PageNumber)
-       {
-
-            var productTable = repository.GetProducts(); 
-
-
-
-            if (searchBy == "Name")
-            {
-                productTable = productTable.Where(x => x.Name == search || search == null);
-            }
-            else
-            {
-                productTable = productTable.Where(x => x.Model == search || search == null);
-            }
-            switch (sortBy)
-            {
-                case "Name desc":
-                    productTable = productTable.OrderByDescending(x => x.Name);
-                    break;
-                case "Model desc":
-                    productTable = productTable.OrderByDescending(x => x.Model);
-                    break;
-                default:
-                    productTable = productTable.OrderBy(x => x.Name);
-                    break;
-            }
-
-            int pageSize = PageSize ?? 5;
-            int pageNumber = PageNumber ?? 1;
-
-
-            var productList = productTable.ToList();
-
-            List<IProduct> productDomain = new List<IProduct>(); 
-
-            productDomain = Mapper.Map<List<ProductEntity>, List<IProduct>>(productList);
-
-            var listPaged = productTable.Skip((pageNumber - 1) * pageSize).Take(pageSize);
-
-
-
-            return productDomain.ToList(); 
-        }
+       
 
     }
   

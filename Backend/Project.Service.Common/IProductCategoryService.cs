@@ -10,10 +10,10 @@ namespace Project.Service.Common
     public interface IProductCategoryService
     {
 
-        Task<IList<IProductCategory>> GetProductCategoriesAsync();
-        Task <int>CategoryUpdateAsync(IProductCategory productCategory);
-        Task <IProductCategory> GetDetailForCategory(int id);
-        Task <int> CategoryEdit(IProductCategory productCategory);
+        Task<IList<ICategories>> GetProductCategoriesAsync();
+        Task <int>CategoryUpdateAsync(ICategories productCategory);
+        Task <ICategories> GetDetailForCategory(int id);
+        Task <int> CategoryEdit(ICategories productCategory);
         Task <int> DeleteCategoryAsync(int id);
     }
 }

@@ -11,7 +11,7 @@ namespace Project.Model
     
    public class Product : IProduct
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [StringLength(50)]
         public string Name { get; set; }
@@ -21,9 +21,9 @@ namespace Project.Model
 
         public int? Quantity { get; set; }
 
-        public int ProductCategoryId { get; set; }
+        public int? ProductCategoryId { get; set; }
 
-        public virtual IProductCategory ProductCategory { get; set; }
+        public virtual ICategories ProductCategory { get; set; }
     }
 }
 

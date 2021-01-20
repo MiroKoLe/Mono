@@ -6,13 +6,12 @@ namespace MVC
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ProductCategory")]
-    public partial class ProductCategory
+    public class ProductCategoryModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProductCategory()
+        public ProductCategoryModel()
         {
-            ProductTable = new HashSet<ProductModel>();
+            ProductModel = new HashSet<ProductModel>();
         }
 
         [Key]
@@ -24,6 +23,6 @@ namespace MVC
         public bool? IsActive { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductModel> ProductTable { get; set; }
+        public virtual ICollection<ProductModel> ProductModel { get; set; }
     }
 }

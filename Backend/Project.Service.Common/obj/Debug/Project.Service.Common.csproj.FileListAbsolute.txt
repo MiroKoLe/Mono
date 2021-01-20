@@ -2,13 +2,8 @@ C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Deb
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\Project.Service.Common.pdb
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\PagedList.dll
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\Product.Model.Common.dll
-C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\Project.DAL.dll
-C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\EntityFramework.dll
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\Product.Model.Common.pdb
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\PagedList.xml
-C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\Project.DAL.pdb
-C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\Project.DAL.dll.config
-C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\EntityFramework.xml
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\obj\Debug\Project.Service.Common.csprojAssemblyReference.cache
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\obj\Debug\Project.Service.Common.csproj.CoreCompileInputs.cache
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\obj\Debug\Project.Service.Common.csproj.CopyComplete
@@ -19,3 +14,9 @@ C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Deb
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\AutoMapper.pdb
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\AutoMapper.xml
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\System.ValueTuple.xml
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\Project.Service.Common.dll.config
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\Product.Model.Common.dll.config
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\EntityFrameworkPaginate.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\Product.Repository.Common.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\Product.Repository.Common.pdb
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Service.Common\bin\Debug\Product.Repository.Common.dll.config

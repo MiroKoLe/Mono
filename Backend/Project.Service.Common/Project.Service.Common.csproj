@@ -34,6 +34,9 @@
     <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFrameworkPaginate, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFrameworkPaginate.1.2.0\lib\EntityFrameworkPaginate.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
@@ -59,8 +62,13 @@
       <Project>{12C510AB-E74F-481A-B4E1-4426989193DC}</Project>
       <Name>Project.Model.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Product.Repository.Common\Project.Repository.Common.csproj">
+      <Project>{6C1FF9C6-3B1F-4747-A6EF-38D480E7A675}</Project>
+      <Name>Project.Repository.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

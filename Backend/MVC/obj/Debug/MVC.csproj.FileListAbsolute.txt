@@ -117,3 +117,14 @@ C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\MVC\bin\System.Web.Http.WebHos
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\MVC\bin\System.Net.Http.Formatting.xml
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\MVC\bin\System.Web.Http.xml
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\MVC\bin\System.Web.Http.WebHost.xml
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\MVC\bin\Ninject.Web.WebApi.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\MVC\bin\Ninject.Web.WebApi.xml
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\MVC\bin\Product.Model.Common.dll.config
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\MVC\bin\Product.Model.dll.config
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\MVC\bin\Product.Repository.Common.dll.config
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\MVC\bin\Project.Repository.dll.config
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\MVC\bin\Project.Service.Common.dll.config
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\MVC\bin\Project.Service.dll.config
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\MVC\bin\Ninject.Web.WebApi.WebHost.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\MVC\bin\Ninject.Web.WebApi.WebHost.xml
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\MVC\bin\EntityFrameworkPaginate.dll

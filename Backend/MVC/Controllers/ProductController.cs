@@ -12,38 +12,35 @@ using MVC;
 using PagedList;
 using Project.Model;
 using Project.Model.Common;
+using Project.Repository.Common;
 using Project.Service.Common;
 
 namespace MVC.Controllers
 {
     public class ProductController : Controller
     {
-        private Products db = new Products();
 
-        private readonly IProductService service; 
 
-            public ProductController (IProductService _service)
+        private readonly IProductService service;
+
+        public ProductController(IProductService _service)
         {
-            this.service = _service; 
+            this.service = _service;
         }
 
         // GET: Product
-        public async Task<ActionResult> Index(string searchBy, string search, int? page, string sortBy, int? PageSize, int? PageNumber)
+        public async Task<ActionResult> Index()
         {
-            ViewBag.SortNameParameter = string.IsNullOrEmpty(sortBy) ? "Name desc" : "";
-            ViewBag.SortModelParameter = sortBy == "Model" ? "Model desc" : "Model";
-
-            var productList = await service.GetProductsAsync(searchBy, search, sortBy, PageSize, page, PageNumber);
-            IList<ProductModel> models = new List<ProductModel>();
+          
+            var productList = await service.GetProductsAsync();
+            List<IProduct> models = new List<IProduct>();
 
 
-            models = Mapper.Map<List<IProduct>, IList<ProductModel>>(productList);
-
-            int pageSize = 5;
-            int pageNumber = (page ?? 1);
+            var product = Mapper.Map<List<IProduct>, List<ProductModel>>(models); 
 
 
-            return View(models.ToPagedList(pageNumber, pageSize));
+
+            return View(product.ToList());
 
 
         }
@@ -51,7 +48,7 @@ namespace MVC.Controllers
         // GET: Product/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            
+
             var getDetails = await service.GetDetailsAsync(id);
 
             if (getDetails == null)
@@ -72,7 +69,7 @@ namespace MVC.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
-            ViewBag.ProductCategoryId = new SelectList(db.ProductCategory, "ProductId", "Name");
+
             return View();
         }
 
@@ -83,37 +80,37 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "ID,Name,Model,Quantity,ProductCategoryId")] ProductModel productModel)
         {
-            
+
 
             if (ModelState.IsValid)
             {
                 var product = Mapper.Map<ProductModel, IProduct>(productModel);
-                await service.CreateProductAsync(product); 
-  
+                await service.CreateProductAsync(product);
+
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProductCategoryId = new SelectList(db.ProductCategory, "ProductId", "Name", productModel.ProductCategoryId);
-            return View(productModel); 
+
+            return View(productModel);
         }
 
         // GET: Product/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
             ProductModel productModel = new ProductModel();
-            var product = await service.GetDetailsAsync(id); 
+            var product = await service.GetDetailsAsync(id);
             if (product == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            productModel = Mapper.Map<IProduct, ProductModel>(product); 
-           
+            productModel = Mapper.Map<IProduct, ProductModel>(product);
+
             if (productModel == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductCategoryId = new SelectList(db.ProductCategory, "ProductId", "Name", productModel.ProductCategoryId);
+
             return View(productModel);
         }
 
@@ -130,10 +127,10 @@ namespace MVC.Controllers
             {
                 var product = Mapper.Map<ProductModel, Product>(productModel);
 
-                await service.EditAsync(product); 
+                await service.EditAsync(product);
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductCategoryId = new SelectList(db.ProductCategory, "ProductId", "Name", productModel.ProductCategoryId);
+
             return View(productModel);
         }
 
@@ -144,7 +141,7 @@ namespace MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var deleteProduct = await service.GetDetailsAsync(id); 
+            var deleteProduct = await service.GetDetailsAsync(id);
             if (deleteProduct == null)
             {
                 return HttpNotFound();
@@ -157,24 +154,16 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(ProductModel model)
         {
-            var product = Mapper.Map<ProductModel, Product>(model); 
+            var product = Mapper.Map<ProductModel, Product>(model);
 
-            if(product != null)
+            if (product != null)
             {
-                await service.DeleteItemAsync(product.ID);
-                return RedirectToAction("Index"); 
+                await service.DeleteItemAsync(product.Id);
+                return RedirectToAction("Index");
             }
-            return View(model); 
+            return View(model);
 
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

@@ -24,3 +24,8 @@ C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Repository\bin\Debug\E
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Repository\obj\Debug\Project.Repository.csproj.CopyComplete
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Repository\obj\Debug\Project.Repository.dll
 C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Repository\obj\Debug\Project.Repository.pdb
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Repository\bin\Debug\Project.Repository.dll.config
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Repository\bin\Debug\Product.Model.Common.dll.config
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Repository\bin\Debug\Product.Model.dll.config
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Repository\bin\Debug\Product.Repository.Common.dll.config
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Repository\bin\Debug\EntityFrameworkPaginate.dll

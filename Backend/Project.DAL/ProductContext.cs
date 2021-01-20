@@ -12,16 +12,15 @@ namespace Project.DAL
         {
         }
 
-        public virtual DbSet<ProductCategory> ProductCategory { get; set; }
-        public virtual DbSet<ProductTable> ProductTable { get; set; }
+        public virtual DbSet<ProductCategoryEntity> ProductCategory { get; set; }
+        public virtual DbSet<ProductEntity> ProductTable { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ProductCategory>()
-                .HasMany(e => e.ProductTable)
-                .WithRequired(e => e.ProductCategory)
-                .HasForeignKey(e => e.ProductCategoryId)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<ProductCategoryEntity>()
+                .HasMany(e => e.ProductEntity)
+                .WithOptional(e => e.ProductCategoryEntity)
+                .HasForeignKey(e => e.ProductCategoryId);
         }
     }
 }
