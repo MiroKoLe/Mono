@@ -10,7 +10,7 @@ namespace Project.Repository.Common
 {
     public interface IProductCategoryRepository
     {
-        Task<IList<ICategories>> GetProductsAsync();
+        Task<IPagedList<ICategories>> GetProductsAsync(IPaging paging);
         Task <ICategories> GetDetailsAsync(int id);
         Task<int> CreateProductAsync(ICategories entity);
         Task<int> EditAsync(ICategories entity);

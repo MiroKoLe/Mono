@@ -22,10 +22,10 @@ namespace Project.Service
 
 
 
-        public async Task<IList<IProduct>> GetProductsAsync()
+        public async Task<IPagedList<IProduct>> GetProductsAsync(IPaging paging)
         {
 
-            return await Repository.GetProducts(); 
+            return await Repository.GetProducts(paging); 
 
 
         }

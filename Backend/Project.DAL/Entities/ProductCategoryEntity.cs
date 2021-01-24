@@ -7,13 +7,13 @@ namespace Project.DAL
     using System.Data.Entity.Spatial;
 
     [Table("ProductCategory")]
-    public partial class ProductCategoryEntity
+    public class ProductCategoryEntity
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ProductCategoryEntity()
         {
-            ProductEntity = new HashSet<ProductEntity>();
+            this.ProductEntity = new HashSet<ProductEntity>();
         }
+
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -22,7 +22,6 @@ namespace Project.DAL
         [StringLength(50)]
         public string Name { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductEntity> ProductEntity { get; set; }
     }
 }

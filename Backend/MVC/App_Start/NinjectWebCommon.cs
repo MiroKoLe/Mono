@@ -81,7 +81,8 @@ namespace MVC.App_Start
             kernel.Bind<ICategories>().To<ProductCategory>();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
             kernel.Bind<IRepository<ProductEntity>>().To<GenericRepository<ProductEntity>>();
-            kernel.Bind<IRepository<ProductCategory>>().To<GenericRepository<ProductCategory>>();
+            kernel.Bind<IRepository<ProductCategoryEntity>>().To<GenericRepository<ProductCategoryEntity>>();
+            kernel.Bind<IPaging>().To<Paging>(); 
         }
     }
 }

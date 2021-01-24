@@ -22,18 +22,24 @@ namespace MVC.Controllers
     {
 
         private readonly IProductService productService;
+        IPaging paging; 
 
-        public ProductAPIController(IProductService _productService)
+        public ProductAPIController(IProductService _productService, IPaging _paging)
         {
-            this.productService = _productService; 
+            this.productService = _productService;
+            this.paging = _paging; 
         }
 
         // GET: api/ProductAPI
         [HttpGet]
         [Route("api/ProductAPI/")]
-        public async Task<IHttpActionResult> GetAllProducts()
+        public async Task<IHttpActionResult> GetAllProducts(int? pageNumber = null, bool isAscending = false, string search = null, int? pageSize = null)
         {
-            var models = await productService.GetProductsAsync();
+
+            paging.PageNumber = pageNumber ?? 1;
+            paging.Search = search;
+            paging.IsAscending = isAscending;
+            var models = await productService.GetProductsAsync(paging);
 
             return Ok(models); 
 

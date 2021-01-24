@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Project.Model;
+using System.Data.Entity;
 
 namespace Project.Repository
 {
@@ -16,24 +17,38 @@ namespace Project.Repository
     {
 
         private readonly IRepository<ProductCategoryEntity> Repository;
+        IPaging paging; 
 
-        public ProductCategoryRepository(IRepository<ProductCategoryEntity> repository)
+        public ProductCategoryRepository(IRepository<ProductCategoryEntity> repository, IPaging _paging)
         {
             this.Repository = repository;
+            this.paging = _paging; 
         }
 
-        public async Task<IList<ICategories>> GetProductsAsync()
+        public async Task<IPagedList<ICategories>> GetProductsAsync(IPaging paging)
         {
-
             var product = await Task.Run(() => Repository.GetProducts());
 
-            List<ICategories> productCategories = new List<ICategories>();
+            product = paging.IsAscending == false ? product.OrderByDescending(x => x.Name) : product.OrderBy(x => x.Name);
 
-            productCategories = Mapper.Map<List<ProductCategoryEntity>, List<ICategories>>(product.ToList()); 
+            if (!string.IsNullOrEmpty(paging.Search))
+            {
+                paging.TotalCount = await product.Where(x => x.Name == paging.Search).CountAsync();
+                product = product.Where(x => x.Name == paging.Search).Skip((paging.PageNumber - 1) * paging.PageSize).Take(paging.PageSize); 
+            }
+            else
+            {
+                paging.TotalCount = await product.CountAsync();
+                product = product.Skip((paging.PageNumber - 1) * paging.PageSize).Take(paging.PageSize);
+            }
 
-            return productCategories.ToList(); 
+
+            var enumerableQuery = product.AsEnumerable();
+            var mappedQuery = Mapper.Map<IEnumerable<ProductCategoryEntity>, IEnumerable<ICategories>>(enumerableQuery);
+            return new StaticPagedList<ICategories>(mappedQuery, paging.PageNumber, paging.PageSize, paging.TotalCount);
+
         }
-        public async Task<ICategories> GetDetailsAsync(int id)
+            public async Task<ICategories> GetDetailsAsync(int id)
         {
             var product = await Repository.GetDetailsAsync(id);
             return Mapper.Map<ProductCategoryEntity, ICategories>(product);

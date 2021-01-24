@@ -37,10 +37,27 @@ namespace MVC
                     cfg.CreateMap<IProduct, ProductModel>();
                     cfg.CreateMap<Product, ProductModel>();
                     cfg.CreateMap<ProductModel, IProduct>();
-                    cfg.CreateMap<IProduct, ProductEntity>(); 
-                    cfg.CreateMap<ProductEntity, IProduct>();
+                    cfg.CreateMap<IProduct, ProductEntity>();
+                    cfg.CreateMap<ProductEntity, IProduct>()
+                    .ForMember(x => x.ProductCategory, opt => opt.MapFrom(source => source.ProductCategoryEntity)); 
                     cfg.CreateMap<ProductEntity, Product>();
                     cfg.CreateMap<ICategories, ProductCategoryModel>();
+                    cfg.CreateMap<ProductModel, IProduct>()
+                    .ForMember(x => x.Id, opt => opt.MapFrom(source => source.ProductCategoryId)); 
+                    cfg.CreateMap<ProductModel, Product>();
+                    cfg.CreateMap<ProductCategoryEntity, ICategories>();
+                    cfg.CreateMap<ProductCategoryModel, ProductCategory>()
+                    .ForMember(x => x.ProductTable, opt => opt.Ignore()); 
+                    cfg.CreateMap<ProductCategoryModel, ICategories>()
+                    .ForMember(x => x.ProductTable, opt => opt.Ignore());
+                    cfg.CreateMap<ProductCategory, ProductCategoryEntity>();
+                    cfg.CreateMap<ICategories, ProductCategoryEntity>(); 
+                    cfg.CreateMap<ProductCategoryEntity, ProductCategory>();
+                    cfg.CreateMap<ProductCategory, ProductCategoryModel>();
+                    cfg.CreateMap<ProductCategoryEntity, ICategories>();
+                  
+                    
+
 
 
 

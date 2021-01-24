@@ -10,7 +10,7 @@ namespace MVC
     [Table("ProductTable")]
     public class ProductModel
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [StringLength(50)]
         public string Name { get; set; }
@@ -20,7 +20,7 @@ namespace MVC
 
         public int? Quantity { get; set; }
 
-        public int ProductCategoryId { get; set; }
+        public int? ProductCategoryId { get; set; }
 
         public virtual ProductCategory ProductCategory { get; set; }
     }

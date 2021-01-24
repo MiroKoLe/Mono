@@ -26,6 +26,7 @@ namespace Project.Repository
 
         public IQueryable<TEntity> GetProducts()
         {
+
             return Entities;
         }
 

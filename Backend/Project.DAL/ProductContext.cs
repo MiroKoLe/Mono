@@ -22,5 +22,7 @@ namespace Project.DAL
                 .WithOptional(e => e.ProductCategoryEntity)
                 .HasForeignKey(e => e.ProductCategoryId);
         }
+
+        object placeHolderVariable;
     }
 }

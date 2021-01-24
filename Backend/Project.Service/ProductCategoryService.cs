@@ -1,4 +1,5 @@
-﻿using Project.Model.Common;
+﻿using PagedList;
+using Project.Model.Common;
 using Project.Repository.Common;
 using Project.Service.Common; 
 using System;
@@ -19,10 +20,10 @@ namespace Project.Service
             this.categoryRepository = _categoryRepository; 
         }
 
-        public async Task<IList<ICategories>> GetProductCategoriesAsync()
+        public async Task<IPagedList<ICategories>> GetProductCategoriesAsync(IPaging paging)
         {
 
-            return await categoryRepository.GetProductsAsync();
+            return await categoryRepository.GetProductsAsync(paging);
 
          
         }

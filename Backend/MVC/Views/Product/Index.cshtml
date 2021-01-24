@@ -1,5 +1,6 @@
-﻿@model IEnumerable<MVC.ProductModel>
-
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model StaticPagedList<ProductModel>
 @{
     ViewBag.Title = "Index";
 }
@@ -14,12 +15,11 @@
 
 
 <p>
-    @using (Html.BeginForm("Index", "ProductCategory", FormMethod.Get))
+    @using (Html.BeginForm("Index", "Product", FormMethod.Get))
     {
 
         <b>Search By:</b>@Html.RadioButton("searchBy", "Name")<text>Name</text>
-        @Html.RadioButton("searchBy", "Model")<text>Model</text>
-        @Html.TextBox("search") <input type="submit" value="search" />
+        @Html.TextBox("Search") <input type="submit" value="search" />
     }
 
 
@@ -31,10 +31,10 @@
     <tr>
 
         <th>
-            @Html.ActionLink("Name", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
+            @Html.ActionLink("Name", "Index", new { IsAscending = ViewBag.sortOrder, search = Request["search"] })
         </th>
         <th>
-            @Html.ActionLink("Model", "Index", new { sortBy = ViewBag.SortNameParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
+            @Html.ActionLink("Model", "Index", new { IsAscending = ViewBag.sortOrder})
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().Quantity)
@@ -64,9 +64,9 @@
 
             <td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
 
 
@@ -75,4 +75,7 @@
     }
 
 </table>
-<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, search = Request.QueryString["search"] }))
+
+

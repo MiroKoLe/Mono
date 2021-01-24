@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPaging.cs" />
     <Compile Include="IProductCategoryRepository.cs" />
     <Compile Include="IProductRepository.cs" />
     <Compile Include="IRepository.cs" />

@@ -9,12 +9,12 @@ namespace MVC
     {
         public static void Register(HttpConfiguration config)
         {
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("multipart/form-data"));
             config.MapHttpAttributeRoutes();
-
             config.Routes.MapHttpRoute(
              name: "DefaultApi",
              routeTemplate: "api/{controller}/{id}",
-             defaults: new { id = RouteParameter.Optional });
+             defaults: new { id = RouteParameter.Optional, model = RouteParameter.Optional });
 
         }
     }

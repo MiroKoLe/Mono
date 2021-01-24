@@ -21,7 +21,7 @@ namespace Project.Model
 
         public int? Quantity { get; set; }
 
-        public int? ProductCategoryId { get; set; }
+        public int ProductCategoryId { get; set; }
 
         public virtual ICategories ProductCategory { get; set; }
     }

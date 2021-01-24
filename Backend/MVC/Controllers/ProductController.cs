@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using MVC;
 using PagedList;
+using Project.DAL;
 using Project.Model;
 using Project.Model.Common;
 using Project.Repository.Common;
@@ -22,26 +23,42 @@ namespace MVC.Controllers
 
 
         private readonly IProductService service;
+        IPaging paging;
+        IRepository<ProductCategoryEntity> categoryRepository; 
 
-        public ProductController(IProductService _service)
+        public ProductController(IProductService _service, IPaging _paging, IRepository<ProductCategoryEntity> _categoryRepository)
         {
             this.service = _service;
+            this.paging = _paging;
+            this.categoryRepository = _categoryRepository; 
         }
 
         // GET: Product
-        public async Task<ActionResult> Index()
+        [HttpGet]
+        public async Task<ActionResult> Index(string search, int? pageNumber, bool isAscending = false)
         {
-          
-            var productList = await service.GetProductsAsync();
-            List<IProduct> models = new List<IProduct>();
+
+            paging.Search = search;
+            paging.PageNumber = pageNumber ?? 1;
+            paging.IsAscending = isAscending;
+           
+
+            var product = await service.GetProductsAsync(paging);
+
+            List<ProductModel> productModel = new List<ProductModel>();
+
+            var productList = product.ToList();
+            ViewBag.sortOrder = isAscending ? false : true; 
+
+            productModel = Mapper.Map<List<IProduct>, List<ProductModel>>(productList);
+
+            var pagedList = new StaticPagedList<ProductModel>(productModel, pageNumber ?? 1, paging.PageSize, paging.TotalCount); 
 
 
-            var product = Mapper.Map<List<IProduct>, List<ProductModel>>(models); 
+            return View(pagedList);  
 
 
-
-            return View(product.ToList());
-
+ 
 
         }
 
@@ -69,16 +86,14 @@ namespace MVC.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
-
+            var categories = categoryRepository.GetProducts(); 
+            ViewBag.ProductCategoryId = new SelectList(categories, "ProductId", "Name");
             return View();
         }
 
-        // POST: Product/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Name,Model,Quantity,ProductCategoryId")] ProductModel productModel)
+        public async Task<ActionResult> Create(ProductModel productModel)
         {
 
 
@@ -87,18 +102,24 @@ namespace MVC.Controllers
                 var product = Mapper.Map<ProductModel, IProduct>(productModel);
                 await service.CreateProductAsync(product);
 
+
+
                 return RedirectToAction("Index");
             }
-
-
+            var categories = categoryRepository.GetProducts();
+            ViewBag.ProductCategoryId = new SelectList(categories, "ProductId", "Name");
             return View(productModel);
         }
 
         // GET: Product/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
+            var categories = categoryRepository.GetProducts();
+            ViewBag.ProductCategoryId = new SelectList(categories, "ProductId", "Name");
+
             ProductModel productModel = new ProductModel();
             var product = await service.GetDetailsAsync(id);
+        
             if (product == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -119,7 +140,7 @@ namespace MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Name,Model,Quantity,ProductCategoryId")] ProductModel productModel)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Model,Quantity,ProductCategoryId")] ProductModel productModel)
         {
 
 
@@ -127,7 +148,7 @@ namespace MVC.Controllers
             {
                 var product = Mapper.Map<ProductModel, Product>(productModel);
 
-                await service.EditAsync(product);
+                await service.EditAsync(product); 
                 return RedirectToAction("Index");
             }
 
@@ -137,31 +158,29 @@ namespace MVC.Controllers
         // GET: Product/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            if (id == null)
+            ProductModel productModel = new ProductModel();
+            var product = await service.GetDetailsAsync(id); 
+
+            if(product == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound(); 
             }
-            var deleteProduct = await service.GetDetailsAsync(id);
-            if (deleteProduct == null)
-            {
-                return HttpNotFound();
-            }
-            return View(deleteProduct);
+            productModel = Mapper.Map<IProduct, ProductModel>(product);
+
+            return View(productModel); 
         }
 
         // POST: Product/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(ProductModel model)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            var product = Mapper.Map<ProductModel, Product>(model);
-
-            if (product != null)
-            {
-                await service.DeleteItemAsync(product.Id);
+            
+            
+                await service.DeleteItemAsync(id);
                 return RedirectToAction("Index");
-            }
-            return View(model);
+ 
+
 
         }
 

@@ -11,7 +11,7 @@ namespace Project.Service.Common
 {
     public interface IProductService
     {
-        Task<IList<IProduct>> GetProductsAsync();
+        Task<IPagedList<IProduct>> GetProductsAsync(IPaging paging);
         Task<IProduct> GetDetailsAsync(int id);
         Task<int> CreateProductAsync(IProduct entity);
         Task<int> EditAsync(IProduct entity);

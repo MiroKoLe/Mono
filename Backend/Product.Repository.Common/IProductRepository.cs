@@ -12,7 +12,7 @@ namespace Project.Repository.Common
     public interface IProductRepository
     {
 
-        Task<IList<IProduct>> GetProducts();
+        Task<IPagedList<IProduct>> GetProducts(IPaging paging);
         Task<IProduct> GetDetailsAsync(int id);
         Task<int> CreateProductAsync(IProduct entity);
         Task<int> EditAsync(IProduct entity);

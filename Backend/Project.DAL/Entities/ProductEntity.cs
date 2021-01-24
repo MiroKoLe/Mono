@@ -7,15 +7,14 @@ namespace Project.DAL
     using System.Data.Entity.Spatial;
 
     [Table("ProductTable")]
-    public partial class ProductEntity
+
+    public class ProductEntity
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [StringLength(50)]
         public string Name { get; set; }
 
-        [StringLength(50)]
         public string Model { get; set; }
 
         public int Quantity { get; set; }

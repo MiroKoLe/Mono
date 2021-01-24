@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PagedList;
 using Project.DAL;
+using System.Data.Entity;
 
 namespace Project.Repository
 {
@@ -16,28 +17,39 @@ namespace Project.Repository
     {
 
         private readonly IRepository<ProductEntity> repository;
+        IPaging paging; 
 
-        public ProductRepository(IRepository<ProductEntity> _repository)
+        public ProductRepository(IRepository<ProductEntity> _repository, IPaging _paging)
+
         {
             this.repository = _repository;
+            this.paging = _paging; 
         }
 
 
-         public async Task<IList<IProduct>> GetProducts()
-       {
+        public async Task <IPagedList<IProduct>> GetProducts(IPaging paging)
+        {
 
-            var productTable = await Task.Run(() => repository.GetProducts()); 
+            var productTable = repository.GetProducts();
 
+            productTable = paging.IsAscending == false ? productTable.OrderByDescending(x => x.Name) : productTable.OrderBy(x => x.Name);
+            if (!string.IsNullOrEmpty(paging.Search))
+            {
+                paging.TotalCount = await productTable.Where(x => x.Name == paging.Search ).CountAsync();
+                productTable = productTable.Where(x => x.Name == paging.Search).Skip((paging.PageNumber - 1) * paging.PageSize).Take(paging.PageSize);
+            }
+            else
+            {
+                paging.TotalCount = await productTable.CountAsync();
+                productTable = productTable.Skip((paging.PageNumber - 1) * paging.PageSize).Take(paging.PageSize);
+            }
 
-            List<IProduct> products = new List<IProduct>();
+            var enumerableProduct = productTable.AsQueryable();
+            var mappedProduct = Mapper.Map<IEnumerable<ProductEntity>, IEnumerable<IProduct>>(enumerableProduct);
+            return new StaticPagedList<IProduct>(mappedProduct, paging.PageNumber, paging.PageSize, paging.TotalCount); 
 
-            var productList = productTable.ToList();
+           
 
-            products = Mapper.Map<List<ProductEntity>, List<IProduct>>(productList); 
-
-
-
-            return products.ToList(); 
         }
 
         public async Task<IProduct> GetDetailsAsync(int id)

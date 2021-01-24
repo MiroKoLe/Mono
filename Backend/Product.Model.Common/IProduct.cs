@@ -11,16 +11,14 @@ namespace Project.Model.Common
     {
 
         int Id { get; set; }
-
-        [StringLength(50)]
+ 
         string Name { get; set; }
 
-        [StringLength(50)]
         string Model { get; set; }
 
         int? Quantity { get; set; }
 
-        int? ProductCategoryId { get; set; }
+        int ProductCategoryId { get; set; }
 
         ICategories ProductCategory { get; set; }
     }
