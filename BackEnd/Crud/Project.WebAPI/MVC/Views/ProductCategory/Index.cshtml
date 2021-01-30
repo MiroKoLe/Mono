@@ -1,0 +1,48 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model StaticPagedList<MVC.Models.ProductCategoryModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @using (Html.BeginForm("Index", "ProductCategory", FormMethod.Get))
+    {
+        <text>Search By Name:</text>
+        @Html.TextBox("search") <input type="submit" value="Search" />
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "Index", new { IsAscending = ViewBag.sortOrder, search = Request["search"] })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, search = Request.QueryString["search"] }))
+
