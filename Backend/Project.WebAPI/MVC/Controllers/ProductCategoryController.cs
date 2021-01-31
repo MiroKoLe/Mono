@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using AutoMapper;
 using MVC.Models;
 using PagedList;
+using Project.Common;
+using Project.Common.Interface;
 using Project.DAL;
 using Project.Model;
 using Project.Model.Common;
@@ -22,12 +24,20 @@ namespace MVC.Controllers
     {
 
         private readonly IProductCategoryService categoryService;
-        IPaging paging;
+        IAscending ascending;
+        ICount count;
+        IPageNumber number;
+        ISize size;
+        IItemSearch itemSearch;
 
-        public ProductCategoryController(IProductCategoryService _categoryService, IPaging _paging)
+        public ProductCategoryController(IProductCategoryService _categoryService, IAscending _ascending, ICount _count, IPageNumber _number, ISize _size, IItemSearch _itemSearch)
         {
             this.categoryService = _categoryService;
-            this.paging = _paging;
+            this.ascending = _ascending;
+            this.count = _count;
+            this.number = _number;
+            this.size = _size;
+            this.itemSearch = _itemSearch;
 
         }
 
@@ -37,17 +47,17 @@ namespace MVC.Controllers
         public async Task<ActionResult> Index(string search, int? pageNumber, bool isAscending = false)
         {
 
-            paging.Search = search;
-            paging.IsAscending = isAscending;
-            paging.PageNumber = pageNumber ?? 1;
+            itemSearch.Search = search;
+            number.pageNumber = pageNumber ?? 1;
+            ascending.IsAscending = isAscending;
 
 
             List<ProductCategoryModel> model = new List<ProductCategoryModel>();
-            var pagedList = await categoryService.GetProductCategoriesAsync(paging);
+            var pagedList = await categoryService.GetProductCategoriesAsync(ascending, count, number, size, itemSearch);
             var newPagedList = pagedList.ToList();
             ViewBag.sortOrder = isAscending ? false : true;
             model = Mapper.Map<List<ICategories>, List<ProductCategoryModel>>(newPagedList);
-            var paged = new StaticPagedList<ProductCategoryModel>(model, pageNumber ?? 1, paging.PageSize, paging.TotalCount);
+            var paged = new StaticPagedList<ProductCategoryModel>(model, pageNumber ?? 1, size.PageSize, count.TotalCount);
             return View(paged);
 
         }

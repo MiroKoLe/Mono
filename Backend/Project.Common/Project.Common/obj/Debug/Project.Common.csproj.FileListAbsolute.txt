@@ -1,0 +1,6 @@
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Common\Project.Common\bin\Debug\Project.Common.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Common\Project.Common\bin\Debug\Project.Common.pdb
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Common\Project.Common\obj\Debug\Project.Common.csprojAssemblyReference.cache
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Common\Project.Common\obj\Debug\Project.Common.csproj.CoreCompileInputs.cache
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Common\Project.Common\obj\Debug\Project.Common.dll
+C:\Users\miroslav.kolev\Desktop\MonoFinal\Backend\Project.Common\Project.Common\obj\Debug\Project.Common.pdb

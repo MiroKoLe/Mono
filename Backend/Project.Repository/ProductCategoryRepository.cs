@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using PagedList;
+using Project.Common;
+using Project.Common.Interface;
 using Project.DAL;
 using Project.Model.Common;
 using Project.Repository.Common;
@@ -16,35 +18,43 @@ namespace Project.Repository
     {
 
         private readonly IRepository<ProductCategoryEntity> Repository;
-        IPaging paging;
+        IAscending ascending;
+        ICount count;
+        IPageNumber number;
+        ISize size;
+        IItemSearch itemSearch;
 
-        public ProductCategoryRepository(IRepository<ProductCategoryEntity> repository, IPaging _paging)
+        public ProductCategoryRepository(IRepository<ProductCategoryEntity> repository, IAscending _ascending, ICount _count, IPageNumber _number, ISize _size, IItemSearch _itemSearch)
         {
             this.Repository = repository;
-            this.paging = _paging;
+            this.ascending = _ascending;
+            this.count = _count;
+            this.number = _number;
+            this.size = _size;
+            this.itemSearch = _itemSearch;
         }
 
-        public async Task<IPagedList<ICategories>> GetProductsAsync(IPaging paging)
+        public async Task<IPagedList<ICategories>> GetProductsAsync(IAscending ascending, ICount count, IPageNumber number, ISize size, IItemSearch itemSearch)
         {
             var product = await Task.Run(() => Repository.GetProducts());
 
-            product = paging.IsAscending == false ? product.OrderByDescending(x => x.Name) : product.OrderBy(x => x.Name);
+            product = ascending.IsAscending == false ? product.OrderByDescending(x => x.Name) : product.OrderBy(x => x.Name);
 
-            if (!string.IsNullOrEmpty(paging.Search))
+            if (!string.IsNullOrEmpty(itemSearch.Search))
             {
-                paging.TotalCount = await product.Where(x => x.Name == paging.Search).CountAsync();
-                product = product.Where(x => x.Name == paging.Search).Skip((paging.PageNumber - 1) * paging.PageSize).Take(paging.PageSize);
+                count.TotalCount = await product.Where(x => x.Name == itemSearch.Search).CountAsync();
+                product = product.Where(x => x.Name == itemSearch.Search).Skip((number.pageNumber - 1) * size.PageSize).Take(size.PageSize);
             }
             else
             {
-                paging.TotalCount = await product.CountAsync();
-                product = product.Skip((paging.PageNumber - 1) * paging.PageSize).Take(paging.PageSize);
+                count.TotalCount= await product.CountAsync();
+                product = product.Skip((number.pageNumber - 1) * size.PageSize).Take(size.PageSize);
             }
 
 
             var enumerableQuery = product.AsEnumerable();
             var mappedQuery = Mapper.Map<IEnumerable<ProductCategoryEntity>, IEnumerable<ICategories>>(enumerableQuery);
-            return new StaticPagedList<ICategories>(mappedQuery, paging.PageNumber, paging.PageSize, paging.TotalCount);
+            return new StaticPagedList<ICategories>(mappedQuery, number.pageNumber, size.PageSize, count.TotalCount);
 
         }
         public async Task<ICategories> GetDetailsAsync(int id)

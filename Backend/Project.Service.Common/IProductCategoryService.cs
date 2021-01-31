@@ -1,4 +1,6 @@
 ﻿using PagedList;
+using Project.Common;
+using Project.Common.Interface;
 using Project.Model.Common;
 using Project.Repository;
 using Project.Repository.Common;
@@ -13,7 +15,7 @@ namespace Project.Service.Common
     public interface IProductCategoryService
     {
 
-        Task<IPagedList<ICategories>> GetProductCategoriesAsync(IPaging paging);
+        Task<IPagedList<ICategories>> GetProductCategoriesAsync(IAscending ascending, ICount count, IPageNumber number, ISize size, IItemSearch itemSearch);
         Task<int> CategoryUpdateAsync(ICategories productCategory);
         Task<ICategories> GetDetailForCategory(int id);
         Task<int> CategoryEdit(ICategories productCategory);

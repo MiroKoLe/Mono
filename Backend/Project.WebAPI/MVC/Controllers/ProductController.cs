@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using AutoMapper;
 using MVC.Models;
 using PagedList;
+using Project.Common;
+using Project.Common.Interface;
 using Project.DAL;
 using Project.Model;
 using Project.Model.Common;
@@ -23,14 +25,24 @@ namespace MVC.Controllers
 
 
         private readonly IProductService service;
-        IPaging paging;
         IRepository<ProductCategoryEntity> categoryRepository;
+        IAscending ascending;
+        ICount count;
+        IPageNumber number;
+        ISize size;
+        IItemSearch itemSearch;
 
-        public ProductController(IProductService _service, IPaging _paging, IRepository<ProductCategoryEntity> _categoryRepository)
+
+        public ProductController(IProductService _service, IRepository<ProductCategoryEntity> _categoryRepository, IAscending _ascending, ICount _count, IPageNumber _number, ISize _size, IItemSearch _itemSearch )
         {
             this.service = _service;
-            this.paging = _paging;
             this.categoryRepository = _categoryRepository;
+            this.ascending = _ascending;
+            this.count = _count;
+            this.number = _number;
+            this.size = _size;
+            this.itemSearch = _itemSearch;
+
         }
 
         // GET: Product
@@ -38,12 +50,13 @@ namespace MVC.Controllers
         public async Task<ActionResult> Index(string search, int? pageNumber, bool isAscending = false)
         {
 
-            paging.Search = search;
-            paging.PageNumber = pageNumber ?? 1;
-            paging.IsAscending = isAscending;
+            itemSearch.Search = search;
+            number.pageNumber = pageNumber ?? 1;
+            ascending.IsAscending = isAscending;
+            
 
 
-            var product = await service.GetProductsAsync(paging);
+            var product = await service.GetProductsAsync(ascending, count, number, size, itemSearch);
 
             List<ProductModel> productModel = new List<ProductModel>();
 
@@ -52,7 +65,7 @@ namespace MVC.Controllers
 
             productModel = Mapper.Map<List<IProduct>, List<ProductModel>>(productList);
 
-            var pagedList = new StaticPagedList<ProductModel>(productModel, pageNumber ?? 1, paging.PageSize, paging.TotalCount);
+            var pagedList = new StaticPagedList<ProductModel>(productModel, pageNumber ?? 1, size.PageSize, count.TotalCount);
 
 
             return View(pagedList);
@@ -156,7 +169,7 @@ namespace MVC.Controllers
         }
 
         // GET: Product/Delete/5
-        public async Task<ActionResult> DeleteAsync(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             ProductModel productModel = new ProductModel();
             var product = await service.GetDetailsAsync(id);

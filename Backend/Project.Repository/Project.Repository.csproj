@@ -122,15 +122,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GenericRepository.cs" />
-    <Compile Include="Paging.cs" />
     <Compile Include="ProductCategoryRepository.cs" />
     <Compile Include="ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Project.Common\Project.Common.csproj">
-      <Project>{d460c3c1-6de6-41e9-9fbb-4f20220772c1}</Project>
+    <ProjectReference Include="..\Project.Common\Project.Common\Project.Common.csproj">
+      <Project>{BC7BD243-0AA8-41E3-96A8-563B96A740B6}</Project>
       <Name>Project.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Project.DAL\Project.DAL.csproj">

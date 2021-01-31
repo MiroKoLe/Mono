@@ -1,4 +1,6 @@
 ﻿using PagedList;
+using Project.Common;
+using Project.Common.Interface;
 using Project.Model.Common;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,7 @@ namespace Project.Repository.Common
 {
     public interface IProductCategoryRepository
     {
-        Task<IPagedList<ICategories>> GetProductsAsync(IPaging paging);
+        Task<IPagedList<ICategories>> GetProductsAsync(IAscending ascending, ICount count, IPageNumber number, ISize size, IItemSearch itemSearch);
         Task<ICategories> GetDetailsAsync(int id);
         Task<int> CreateProductAsync(ICategories entity);
         Task<int> EditAsync(ICategories entity);

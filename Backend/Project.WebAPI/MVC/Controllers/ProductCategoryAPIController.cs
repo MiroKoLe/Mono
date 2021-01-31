@@ -11,6 +11,8 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using AutoMapper;
 using MVC.Models;
+using Project.Common;
+using Project.Common.Interface;
 using Project.DAL;
 using Project.Model;
 using Project.Model.Common;
@@ -23,13 +25,21 @@ namespace MVC.Controllers
     public class ProductCategoryAPIController : ApiController
     {
         private readonly IProductCategoryService categoryService;
-        IPaging paging;
+        IAscending ascending;
+        ICount count;
+        IPageNumber number;
+        ISize size;
+        IItemSearch itemSearch;
 
-        public ProductCategoryAPIController(IProductCategoryService _categoryService, IPaging _paging)
+        public ProductCategoryAPIController(IProductCategoryService _categoryService, IAscending _ascending, ICount _count, IPageNumber _number, ISize _size, IItemSearch _itemSearch)
         {
 
             this.categoryService = _categoryService;
-            this.paging = _paging;
+            this.ascending = _ascending;
+            this.count = _count;
+            this.number = _number;
+            this.size = _size;
+            this.itemSearch = _itemSearch;
         }
 
         // GET: api/ProductCategoryAPI
@@ -39,12 +49,12 @@ namespace MVC.Controllers
         {
 
 
-            paging.PageNumber = pageNumber ?? 1;
-            paging.Search = search;
-            paging.IsAscending = isAscending;
+            itemSearch.Search = search;
+            number.pageNumber = pageNumber ?? 1;
+            ascending.IsAscending = isAscending;
 
 
-            var pagedList = await categoryService.GetProductCategoriesAsync(paging);
+            var pagedList = await categoryService.GetProductCategoriesAsync(ascending, count, number, size, itemSearch);
             return Ok(pagedList);
 
 

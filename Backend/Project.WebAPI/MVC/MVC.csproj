@@ -185,7 +185,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Readme\readme.txt" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -252,6 +251,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Project.Common\Project.Common\Project.Common.csproj">
+      <Project>{BC7BD243-0AA8-41E3-96A8-563B96A740B6}</Project>
+      <Name>Project.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Project.DAL\Project.DAL.csproj">
       <Project>{433D36B5-4561-494C-AC24-E6E43763D0BA}</Project>
       <Name>Project.DAL</Name>

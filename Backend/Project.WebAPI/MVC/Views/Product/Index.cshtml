@@ -75,6 +75,6 @@
     }
 
 </table>
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-@Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, search = Request.QueryString["search"] }))
+Page @(Model.Count < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, PageNumber => Url.Action("Index", new { PageNumber, search = Request.QueryString["search"] }))
 

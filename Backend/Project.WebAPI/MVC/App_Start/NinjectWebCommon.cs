@@ -11,6 +11,8 @@ namespace MVC.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Ninject.Web.Common.WebHost;
+    using Project.Common;
+    using Project.Common.Interface;
     using Project.DAL;
     using Project.Model;
     using Project.Model.Common;
@@ -82,7 +84,11 @@ namespace MVC.App_Start
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
             kernel.Bind<IRepository<ProductEntity>>().To<GenericRepository<ProductEntity>>();
             kernel.Bind<IRepository<ProductCategoryEntity>>().To<GenericRepository<ProductCategoryEntity>>();
-            kernel.Bind<IPaging>().To<Paging>();
+            kernel.Bind<IAscending>().To<Ascending>();
+            kernel.Bind<ICount>().To<Count>();
+            kernel.Bind<IItemSearch>().To<ItemSearch>();
+            kernel.Bind<IPageNumber>().To<PageNumber>();
+            kernel.Bind<ISize>().To<Size>();
         }
     }
 }

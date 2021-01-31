@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using MVC.Models;
+using Project.Common;
+using Project.Common.Interface;
 using Project.Model;
 using Project.Model.Common;
 using Project.Repository.Common;
@@ -14,12 +16,20 @@ namespace MVC.Controllers
     {
 
         private readonly IProductService productService;
-        IPaging paging;
+        IAscending ascending;
+        ICount count;
+        IPageNumber number;
+        ISize size;
+        IItemSearch itemSearch;
 
-        public ProductAPIController(IProductService _productService, IPaging _paging)
+        public ProductAPIController(IProductService _productService, IAscending _ascending, ICount _count, IPageNumber _number, ISize _size, IItemSearch _itemSearch)
         {
             this.productService = _productService;
-            this.paging = _paging;
+            this.ascending = _ascending;
+            this.count = _count;
+            this.number = _number;
+            this.size = _size;
+            this.itemSearch = _itemSearch;
         }
 
         // GET: api/ProductAPI
@@ -28,10 +38,10 @@ namespace MVC.Controllers
         public async Task<IHttpActionResult> GetAllProducts(int? pageNumber = null, bool isAscending = false, string search = null, int? pageSize = null)
         {
 
-            paging.PageNumber = pageNumber ?? 1;
-            paging.Search = search;
-            paging.IsAscending = isAscending;
-            var models = await productService.GetProductsAsync(paging);
+            itemSearch.Search = search;
+            number.pageNumber = pageNumber ?? 1;
+            ascending.IsAscending = isAscending;
+            var models = await productService.GetProductsAsync(ascending, count, number, size, itemSearch);
 
             return Ok(models);
 

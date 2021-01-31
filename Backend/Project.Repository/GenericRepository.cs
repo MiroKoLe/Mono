@@ -31,7 +31,7 @@ namespace Project.Repository
             return Entities;
         }
 
-        public async Task<TEntity> GetDetailsAsync(int id)
+        public async Task<TEntity> GetDetailsAsync(int? id)
         {
 
             return await Entities.FindAsync(id);
@@ -97,7 +97,7 @@ namespace Project.Repository
             }
         }
 
-        public async Task<int> DeleteItemAsync(int id)
+        public async Task<int> DeleteItemAsync(int? id)
         {
             try
             {

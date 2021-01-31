@@ -1,4 +1,6 @@
 ﻿using PagedList;
+using Project.Common;
+using Project.Common.Interface;
 using Project.Model.Common;
 using Project.Repository;
 using Project.Repository.Common;
@@ -24,22 +26,33 @@ public class ProductCategoryService : IProductCategoryService
         this.categoryRepository = _categoryRepository;
     }
 
-    public async Task<IPagedList<ICategories>> GetProductCategoriesAsync(IPaging paging)
+    public async Task<IPagedList<ICategories>> GetProductCategoriesAsync(IAscending ascending, ICount count, IPageNumber number, ISize size, IItemSearch itemSearch)
     {
 
-        return await categoryRepository.GetProductsAsync(paging);
+        return await categoryRepository.GetProductsAsync(ascending, count, number, size, itemSearch);
 
 
     }
 
     public async Task<int> CategoryUpdateAsync(ICategories category)
     {
-        return await categoryRepository.CreateProductAsync(category);
+     if (category != null
+         && category.ProductId != null
+         && string.IsNullOrEmpty(category.Name))
+            { 
+                throw new ArgumentNullException("category");
+            }
+
+            return await categoryRepository.CreateProductAsync(category);
 
     }
 
     public async Task<int> DeleteCategoryAsync(int id)
     {
+         if(id != null)
+            {
+                throw new ArgumentNullException("id"); 
+            }
         return await categoryRepository.DeleteItemAsync(id);
     }
 
@@ -50,7 +63,11 @@ public class ProductCategoryService : IProductCategoryService
 
     public async Task<ICategories> GetDetailForCategory(int id)
     {
-        return await categoryRepository.GetDetailsAsync(id);
+            if (id != null)
+            {
+                throw new ArgumentNullException("id");
+            }
+            return await categoryRepository.GetDetailsAsync(id);
     }
 
 
